@@ -1,0 +1,40 @@
+<!doctype html>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+<script>
+
+$(document).ready(function() {
+    $("#submit_button").click(
+      function() {
+          var data = $("#my_form").serialize();
+          console.log(data);
+          $.ajax(
+              {
+                  url: "create_new",
+                  type: "POST",
+                  data: data,
+                  success: function(responseData) {
+                             console.log("success");
+                             console.log(responseData);
+                           },
+                  error:   function(responseData) {
+                             console.log("error");
+                             console.log(responseData);
+                           },
+              });
+      });
+});
+
+</script>
+<body>
+  MyModel Page
+  <form id="my_form">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+    <label for="my_id">{{ form.my_id.label }}</label>
+    {{ form.my_id }}
+    <label for="name">{{ form.name.label }}</label>
+    {{ form.name }}
+    <input id="submit_button" type="button" value="submit"/>
+  </form>
+</body>
+</html>

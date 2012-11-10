@@ -8,7 +8,7 @@ class BaseGroup(models.Model):
         abstract = True
 
 class BaseModel(models.Model):
-    my_id = models.CharField("My Unique Id", max_length=50, unique=True)
+    my_id = models.CharField("My Unique Id", max_length=50)
     name = models.CharField("Name", max_length=30)
 
     def __unicode__(self):
